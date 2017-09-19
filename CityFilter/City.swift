@@ -10,11 +10,15 @@ import CoreLocation
 
 class City {
     
+    // MARK: - Fields
+    
     let id: Int
     let country: String
     let name: String
     let coordinate: CLLocationCoordinate2D
 
+    // MARK: - Constructors
+    
     init(
         id: Int,
         country: String,
@@ -24,5 +28,12 @@ class City {
         self.country = country
         self.name = name
         self.coordinate = coordinate
+    }
+    
+    // MARK: - Helpers
+    
+    func displayName() -> String {
+        let result = "\(name), \(country)"
+        return result
     }
 }
