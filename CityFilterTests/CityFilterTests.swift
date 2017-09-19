@@ -7,30 +7,31 @@
 //
 
 import XCTest
+import CoreLocation
 @testable import CityFilter
 
 class CityFilterTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    // MARK: - Tests
+    
+    func testOneLetterFilter() {
+        let city1 = city(country: "US", name: "Alabama")
+        let city2 = city(country: "AU", name: "Sydney")
+        
+        let dataSource = CityDataSource(cities: [city1, city2])
+        dataSource.filterByPrefix("A")
+//        XCTAssert(dataSource.cities.count == 1)
+//        XCTAssert(dataSource.cities[0] === city1)
+        
+        XCTAssert(dataSource.words.count == 1)
+        XCTAssert(dataSource.words[0] == "Alabama")
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
+    // MARK: - Helpers
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    private func city(country: String, name: String) -> City {
+        let coordinate = CLLocationCoordinate2DMake(0, 0)
+        let result = City(id: 0, country: country, name: name, coordinate: coordinate)
+        return result
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
 }
