@@ -27,6 +27,12 @@ class CityListViewController: UIViewController, UITableViewDelegate, UITableView
         prepareCities()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? CityMapViewController, let city = sender as? City {
+            controller.city = city
+        }
+    }
+    
     // MARK: - UISearchBarDelegate
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -51,6 +57,16 @@ class CityListViewController: UIViewController, UITableViewDelegate, UITableView
         
         cell.textLabel?.text = city.displayName()
         return cell
+    }
+    
+    // MARK: - UITableViewDelegate
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard indexPath.row < dataSource.cities.count else { return }
+        let city = dataSource.cities[indexPath.row]
+        
+        searchBar.resignFirstResponder()
+        performSegue(withIdentifier: "showCityMap", sender: city)
     }
     
     // MARK: - Helpers

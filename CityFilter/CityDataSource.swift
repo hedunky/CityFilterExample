@@ -19,6 +19,13 @@ private class CitiesByCharacter {
     }
 }
 
+/**
+ CityDataSource basically uses an array of dictionaries, each dictionary maps a first character
+ to the corresponding cities starting with that character. In my opinion, such implementation
+ should be enough to optimize the search query to be fast enough, since just specifying the first
+ character filters out a huge portion of irrelevant cities. If, however, this implementation
+ shows to be slow for larger arrays of data, we could implement a trie data structure and store cities using it.
+ */
 class CityDataSource {
     
     // MARK: - Fields

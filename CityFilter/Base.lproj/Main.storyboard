@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="DdR-RN-pB1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Ca6-3z-Gde">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--City List View Controller-->
+        <!--Cities-->
         <scene sceneID="MQl-2a-s3g">
             <objects>
                 <viewController id="DdR-RN-pB1" customClass="CityListViewController" customModule="CityFilter" customModuleProvider="target" sceneMemberID="viewController">
@@ -22,14 +22,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="lIA-3c-oF6">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="DdR-RN-pB1" id="V6V-CV-RE5"/>
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="93s-cp-VB0">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="lDF-Z4-Ooy">
@@ -63,15 +63,67 @@
                             <constraint firstItem="GUq-sQ-XWg" firstAttribute="top" secondItem="93s-cp-VB0" secondAttribute="bottom" id="xT7-N0-vZh"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Cities" id="I2X-m6-tqm"/>
                     <connections>
                         <outlet property="activityIndicatorView" destination="dIl-3t-mGh" id="Duk-fR-fgP"/>
                         <outlet property="searchBar" destination="lIA-3c-oF6" id="ybR-pb-yk1"/>
                         <outlet property="tableView" destination="93s-cp-VB0" id="mgc-XR-T2F"/>
+                        <segue destination="5lG-8b-VVA" kind="show" identifier="showCityMap" id="WQ8-br-npE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4rn-Uh-5f4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-36" y="29"/>
+            <point key="canvasLocation" x="860" y="28"/>
+        </scene>
+        <!--City Map View Controller-->
+        <scene sceneID="GYv-mw-ArE">
+            <objects>
+                <viewController id="5lG-8b-VVA" customClass="CityMapViewController" customModule="CityFilter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="l8i-eR-ZCd"/>
+                        <viewControllerLayoutGuide type="bottom" id="dyd-wo-w40"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7PQ-bq-Pti">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DaE-bk-FWS">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DaE-bk-FWS" firstAttribute="leading" secondItem="7PQ-bq-Pti" secondAttribute="leading" id="hRM-sy-otG"/>
+                            <constraint firstItem="DaE-bk-FWS" firstAttribute="top" secondItem="l8i-eR-ZCd" secondAttribute="bottom" id="ilA-Rl-9nW"/>
+                            <constraint firstItem="dyd-wo-w40" firstAttribute="top" secondItem="DaE-bk-FWS" secondAttribute="bottom" id="qod-sY-HOZ"/>
+                            <constraint firstAttribute="trailing" secondItem="DaE-bk-FWS" secondAttribute="trailing" id="zrX-ov-n7s"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="DaE-bk-FWS" id="uab-F8-thw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SbU-5F-lF2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1714" y="28"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Dro-Pt-mHN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ca6-3z-Gde" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="C5N-wx-7Wd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="DdR-RN-pB1" kind="relationship" relationship="rootViewController" id="8TB-a9-IgZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kz9-tO-aZX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-36" y="28.335832083958024"/>
         </scene>
     </scenes>
 </document>
