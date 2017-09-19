@@ -21,6 +21,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="lIA-3c-oF6">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="DdR-RN-pB1" id="V6V-CV-RE5"/>
+                                </connections>
+                            </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="93s-cp-VB0">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="lDF-Z4-Ooy">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lDF-Z4-Ooy" id="dE2-DI-ggV">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="DdR-RN-pB1" id="hQf-hh-ev4"/>
+                                    <outlet property="delegate" destination="DdR-RN-pB1" id="vWZ-ii-YH3"/>
+                                </connections>
+                            </tableView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="dIl-3t-mGh">
                                 <rect key="frame" x="177.5" y="323.5" width="20" height="20"/>
                             </activityIndicatorView>
@@ -28,11 +53,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="dIl-3t-mGh" firstAttribute="centerX" secondItem="F63-Sh-iQ5" secondAttribute="centerX" id="BPx-sd-kbc"/>
+                            <constraint firstItem="lIA-3c-oF6" firstAttribute="top" secondItem="xrA-41-maz" secondAttribute="bottom" id="MyD-xg-L05"/>
                             <constraint firstItem="dIl-3t-mGh" firstAttribute="centerY" secondItem="F63-Sh-iQ5" secondAttribute="centerY" id="Nq8-oQ-NPi"/>
+                            <constraint firstAttribute="trailing" secondItem="93s-cp-VB0" secondAttribute="trailing" id="TIb-Q5-SG7"/>
+                            <constraint firstItem="93s-cp-VB0" firstAttribute="top" secondItem="lIA-3c-oF6" secondAttribute="bottom" id="UBu-6t-ouh"/>
+                            <constraint firstItem="93s-cp-VB0" firstAttribute="leading" secondItem="F63-Sh-iQ5" secondAttribute="leading" id="iYC-A9-ECL"/>
+                            <constraint firstAttribute="trailing" secondItem="lIA-3c-oF6" secondAttribute="trailing" id="o1Z-UH-wvl"/>
+                            <constraint firstItem="lIA-3c-oF6" firstAttribute="leading" secondItem="F63-Sh-iQ5" secondAttribute="leading" id="rjZ-Nb-SZP"/>
+                            <constraint firstItem="GUq-sQ-XWg" firstAttribute="top" secondItem="93s-cp-VB0" secondAttribute="bottom" id="xT7-N0-vZh"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="activityIndicatorView" destination="dIl-3t-mGh" id="Duk-fR-fgP"/>
+                        <outlet property="searchBar" destination="lIA-3c-oF6" id="ybR-pb-yk1"/>
+                        <outlet property="tableView" destination="93s-cp-VB0" id="mgc-XR-T2F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4rn-Uh-5f4" userLabel="First Responder" sceneMemberID="firstResponder"/>

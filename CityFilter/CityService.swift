@@ -48,6 +48,7 @@ class CityService {
                 for object in jsonArray {
                     if let city = CityParser.parse(data: object) {
                         result.append(city)
+                        break
                     }
                 }
                 
